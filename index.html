@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plotly Charts Preview</title>
+    <script>
+        function accessControl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const accessKey = urlParams.get('key'); // 'key'라는 이름의 URL 매개변수
+
+            // 설정한 'accesskey'와 일치하는지 검사
+            if (accessKey !== 'mass') {
+                document.body.innerHTML = '<h1>Unauthorized Access</h1>';
+                // 이 부분은 페이지의 나머지 콘텐츠를 보여주지 않도록 합니다.
+                return; // 추가 접근을 차단합니다.
+            }
+        }
+    </script>
     <style>
         iframe {
             width: 100%;
@@ -23,7 +36,7 @@
         }
     </style>
 </head>
-<body>
+<body onload="accessControl()">
     <div class="row">
         <iframe class="full" src="chart1.html"></iframe>
     </div>
